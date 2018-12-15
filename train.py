@@ -4,11 +4,9 @@ from keras.models import Model
 from keras import backend as K
 import numpy as np
 import os
-import struct
 import wave
 
 corpusPath = '1s corpus'
-modelName = 'test.h5'
 
 batchSize = 4096 
 epochs = 1000
