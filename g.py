@@ -1,10 +1,18 @@
 from keras.models import load_model
 import numpy as np
+import os
+import shutil
 import wave
 
 decoder = load_model('latest-decoder.h5')
 outputFolder = 'generated/'
 n = 5
+
+# ensure outputFolder exists and is empty
+directory = os.path.dirname(outputFolder)
+if os.path.exists(directory):
+	shutil.rmtree(outputFolder)
+os.mkdir(directory)
 
 def generate(l1, l2, l3, l4):
 	sample = np.array([[l1, l2, l3, l4]])
@@ -20,10 +28,11 @@ def generate(l1, l2, l3, l4):
 	w.writeframes(data)
 	w.close()
 
-l1 = np.linspace(-5, 5, n)
-l2 = np.linspace(-5, 5, n)
-l3 = np.linspace(-5, 5, n)
-l4 = np.linspace(-5, 5, n)
+lb, ub = -2, 2
+l1 = np.linspace(lb, ub, n)
+l2 = np.linspace(lb, ub, n)
+l3 = np.linspace(lb, ub, n)
+l4 = np.linspace(lb, ub, n)
 
 for i, a in enumerate(l1):
 	print('Iteration ' + str(i) + ' of first latent variable')
