@@ -28,7 +28,7 @@ def generate(l1, l2, l3, l4):
 	w.writeframes(data)
 	w.close()
 
-lb, ub = -2, 2
+lb, ub = -5, 5
 l1 = np.linspace(lb, ub, n)
 l2 = np.linspace(lb, ub, n)
 l3 = np.linspace(lb, ub, n)
